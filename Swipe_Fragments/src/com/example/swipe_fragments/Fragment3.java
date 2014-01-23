@@ -14,6 +14,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class Fragment3 extends Fragment implements SurfaceHolder.Callback{
 	
@@ -69,6 +70,43 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback{
 		});
 		
 		return view;
+	}
+	
+	@Override
+	public void onPause() {
+		Toast.makeText(getActivity().getApplicationContext(), "Fragment3 onPause()", Toast.LENGTH_SHORT).show();
+		
+		//Pause Preview
+		if(camera != null && previewing) {
+			camera.stopPreview();
+			camera.release();
+			camera = null;
+			previewing = false;
+		}
+		
+		super.onPause();
+	}
+	
+	@Override
+	public void onResume() {
+		Toast.makeText(getActivity().getApplicationContext(), "Fragment3 onResume()", Toast.LENGTH_SHORT).show();
+		
+		//Start Preview
+		if(!previewing) {
+			camera = camera.open();
+			if (camera != null) {
+				try {
+					camera.setPreviewDisplay(surfaceHolder);
+					camera.setDisplayOrientation(90);
+					camera.startPreview();
+					previewing = true;
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		super.onResume();
 	}
 
 	@Override
