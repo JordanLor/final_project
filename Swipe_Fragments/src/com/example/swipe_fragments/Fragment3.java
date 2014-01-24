@@ -74,7 +74,7 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback{
 	
 	@Override
 	public void onPause() {
-		Toast.makeText(getActivity().getApplicationContext(), "Fragment3 onPause()", Toast.LENGTH_SHORT).show();
+		//Toast.makeText(getActivity().getApplicationContext(), "Fragment3 onPause()", Toast.LENGTH_SHORT).show();
 		
 		//Pause Preview
 		if(camera != null && previewing) {
@@ -89,7 +89,7 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback{
 	
 	@Override
 	public void onResume() {
-		Toast.makeText(getActivity().getApplicationContext(), "Fragment3 onResume()", Toast.LENGTH_SHORT).show();
+		//Toast.makeText(getActivity().getApplicationContext(), "Fragment3 onResume()", Toast.LENGTH_SHORT).show();
 		
 		//Start Preview
 		if(!previewing) {
