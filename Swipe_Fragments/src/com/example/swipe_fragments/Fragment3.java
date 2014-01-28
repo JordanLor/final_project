@@ -3,17 +3,18 @@ package com.example.swipe_fragments;
 import java.io.IOException;
 
 import android.app.Activity;
-import android.content.Context;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 
 
@@ -25,6 +26,7 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback {
     private Camera camera;
     private SurfaceHolder surfaceHolder;
     private SurfaceView surfaceView;
+    private ImageView shutterButton;
 
     @Override
     public void onAttach(Activity activity) {
@@ -39,6 +41,19 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback {
     	
     	surfaceView = (SurfaceView) view.findViewById(R.id.surfaceview);
         surfaceView.getHolder().addCallback(this);
+        
+        shutterButton = (ImageView) view.findViewById(R.id.shutterButton);
+        
+        shutterButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(getActivity().getApplicationContext(), "SNAP!", Toast.LENGTH_SHORT).show();
+				
+			}
+		});
+        
+        
 
         return view;
     }
