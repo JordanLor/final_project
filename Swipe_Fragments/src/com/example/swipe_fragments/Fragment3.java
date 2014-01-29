@@ -3,7 +3,11 @@ package com.example.swipe_fragments;
 import java.io.IOException;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.hardware.Camera;
+import android.hardware.Camera.PictureCallback;
+import android.hardware.Camera.ShutterCallback;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -48,10 +52,33 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback {
 			
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(getActivity().getApplicationContext(), "SNAP!", Toast.LENGTH_SHORT).show();
-				
+				Toast.makeText(getActivity().getApplicationContext(), "SNAP!", Toast.LENGTH_SHORT).show();	
+				camera.takePicture(mShutterCallback, mPictureCallback_RAW, mPictureCallback_JPG);
 			}
+			
+			ShutterCallback mShutterCallback = new ShutterCallback() {
+				@Override
+				public void onShutter() {
+					//TODO Auto-generated method stub
+				}
+			};
+			
+			PictureCallback mPictureCallback_RAW = new PictureCallback() {
+				@Override
+				public void onPictureTaken(byte[] arg0, Camera arg1) {
+					//TODO Auto-generated method stub
+				}
+			};
+			
+			PictureCallback mPictureCallback_JPG = new PictureCallback() {
+				@Override
+				public void onPictureTaken(byte[] arg0, Camera arg1) {
+					Bitmap bitmapPicture = BitmapFactory.decodeByteArray(arg0, 0, arg0.length);
+				}
+			};
+			
 		});
+        
         
         
 
@@ -101,9 +128,6 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback {
             Log.e(TAG, "Exception during stopping camera preview", exception);
         }
     }
-    
-    
-    
     
     
     public void setupCamera() {
