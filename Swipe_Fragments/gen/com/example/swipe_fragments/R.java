@@ -199,7 +199,7 @@ containing a value of this type.
         public static final int com_facebook_list_section_header_background=0x7f02000d;
         public static final int com_facebook_loginbutton_silver=0x7f02000e;
         public static final int com_facebook_logo=0x7f02000f;
-        public static final int com_facebook_picker_default_separator_color=0x7f020023;
+        public static final int com_facebook_picker_default_separator_color=0x7f020024;
         public static final int com_facebook_picker_item_background=0x7f020010;
         public static final int com_facebook_picker_list_focused=0x7f020011;
         public static final int com_facebook_picker_list_longpressed=0x7f020012;
@@ -216,13 +216,14 @@ containing a value of this type.
         public static final int com_facebook_top_background=0x7f02001d;
         public static final int com_facebook_top_button=0x7f02001e;
         public static final int com_facebook_usersettingsfragment_background_gradient=0x7f02001f;
-        public static final int ic_launcher=0x7f020020;
-        public static final int shutter_black=0x7f020021;
-        public static final int shutter_blue=0x7f020022;
+        public static final int grayscale_icon=0x7f020020;
+        public static final int ic_launcher=0x7f020021;
+        public static final int shutter_black=0x7f020022;
+        public static final int shutter_blue=0x7f020023;
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f04001b;
-        public static final int action_settings=0x7f04001e;
+        public static final int action_settings=0x7f04001f;
         public static final int authButton=0x7f040019;
         public static final int com_facebook_login_activity_progress_bar=0x7f040005;
         public static final int com_facebook_picker_activity_circle=0x7f040004;
@@ -244,6 +245,7 @@ containing a value of this type.
         public static final int com_facebook_usersettingsfragment_login_button=0x7f040017;
         public static final int com_facebook_usersettingsfragment_logo_image=0x7f040015;
         public static final int com_facebook_usersettingsfragment_profile_name=0x7f040016;
+        public static final int filterButton=0x7f04001e;
         public static final int large=0x7f040002;
         public static final int normal=0x7f040001;
         public static final int picker_subtitle=0x7f040012;

@@ -1,0 +1,7 @@
+package com.project.utils;
+
+public class Filters {
+	
+	public final String[] FILTERS = {"None", "Greyscale", "Sepia"};
+
+}

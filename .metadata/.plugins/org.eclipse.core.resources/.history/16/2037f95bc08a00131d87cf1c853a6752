@@ -1,0 +1,34 @@
+package com.project.utils;
+
+
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import com.project.utils.Filters;
+
+
+public class FilterDialog extends DialogFragment {
+	
+	public Dialog onCreateDialog(Bundle savedInstanceState) {
+		int selectedFilter;
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		builder.setTitle("Choose a filter")
+				.setSingleChoiceItems(Filters.AVAILABLE_FILTERS, selectedFilter,
+						new DialogInterface.OnClickListener() {
+							
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								// TODO Auto-generated method stub
+								
+							}
+						});
+		
+		
+		
+		
+	}
+	
+	
+}

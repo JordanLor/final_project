@@ -2,7 +2,11 @@ package com.example.swipe_fragments;
 
 import java.io.IOException;
 
+import com.project.utils.FilterDialog;
+
 import android.app.Activity;
+import android.app.Dialog;
+import android.support.v4.app.DialogFragment;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
@@ -31,6 +35,8 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback {
     private SurfaceHolder surfaceHolder;
     private SurfaceView surfaceView;
     private ImageView shutterButton;
+    private ImageView filterButton;
+    private FilterDialog filterDialog;
 
     @Override
     public void onAttach(Activity activity) {
@@ -47,6 +53,8 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback {
         surfaceView.getHolder().addCallback(this);
         
         shutterButton = (ImageView) view.findViewById(R.id.shutterButton);
+        filterButton = (ImageView) view.findViewById(R.id.filterButton);
+        filterDialog = new FilterDialog();
         
         shutterButton.setOnClickListener(new OnClickListener() {
 			
@@ -74,12 +82,18 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback {
 				@Override
 				public void onPictureTaken(byte[] arg0, Camera arg1) {
 					Bitmap bitmapPicture = BitmapFactory.decodeByteArray(arg0, 0, arg0.length);
+					filterButton.setVisibility(0);
 				}
 			};
 			
 		});
         
-        
+        filterButton.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {		
+				filterDialog.show(getActivity().getSupportFragmentManager(), "filters");
+			} });
         
 
         return view;

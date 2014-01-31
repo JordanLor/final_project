@@ -1,0 +1,27 @@
+package com.project.utils;
+
+import java.util.ArrayList;
+
+import android.R;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.os.Bundle;
+import com.project.utils.Filters;
+
+
+public class FilterDialog extends DialogFragment {
+	
+	public Dialog onCreateDialog(Bundle savedInstanceState) {
+		int selectedFilter;
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		builder.setTitle("Choose a filter")
+				.setSingleChoiceItems(Filters.AVAILABLE_FILTERS, selectedFilter, listener)
+		
+		
+		
+		
+	}
+	
+	
+}
