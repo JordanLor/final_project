@@ -5,8 +5,6 @@ import java.io.IOException;
 import com.project.utils.FilterDialog;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.support.v4.app.DialogFragment;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
@@ -24,12 +22,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-
-
-public class Fragment3 extends Fragment implements SurfaceHolder.Callback {
+public class Fragment3 extends Fragment implements SurfaceHolder.Callback, FilterDialog.FilterDialogListener {
 	
     public static final String TAG = "Fragment3";
-
+    
+    private final int REQUEST_CODE = 3;
+    
     private int cameraId;
     private Camera camera;
     private SurfaceHolder surfaceHolder;
@@ -55,6 +53,9 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback {
         shutterButton = (ImageView) view.findViewById(R.id.shutterButton);
         filterButton = (ImageView) view.findViewById(R.id.filterButton);
         filterDialog = new FilterDialog();
+        
+        // Needed to pass messages back to this fragment
+        filterDialog.setTargetFragment(this, REQUEST_CODE);
         
         shutterButton.setOnClickListener(new OnClickListener() {
 			
@@ -89,7 +90,6 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback {
 		});
         
         filterButton.setOnClickListener(new OnClickListener(){
-
 			@Override
 			public void onClick(View v) {		
 				filterDialog.show(getActivity().getSupportFragmentManager(), "filters");
@@ -99,6 +99,7 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback {
         return view;
     }
     
+
     
     @Override
     public void onResume() {
@@ -171,4 +172,17 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback {
         // We don't need to handle this case as the fragment takes care of
         // releasing the camera when needed.
     }
+
+    // Handle ok dialog clicks
+	@Override
+	public void onFilterDialogPositiveClick(FilterDialog dialog) {
+		
+	}
+
+	// Handle cancel dialog clicks
+	@Override
+	public void onFilterDialogNegativeClick(FilterDialog dialog) {
+		// Stub - as of yet unused, may not be needed unless a "filter canceled"
+		// message is desired
+	}
 }

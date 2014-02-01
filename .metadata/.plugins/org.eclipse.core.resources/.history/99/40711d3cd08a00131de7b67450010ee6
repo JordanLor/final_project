@@ -1,0 +1,191 @@
+package com.example.swipe_fragments;
+
+import java.io.IOException;
+
+import com.project.utils.FilterDialog;
+
+import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.hardware.Camera;
+import android.hardware.Camera.PictureCallback;
+import android.hardware.Camera.ShutterCallback;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+
+
+public class Fragment3 extends Fragment implements SurfaceHolder.Callback {
+	
+    public static final String TAG = "Fragment3";
+
+    private int cameraId;
+    private Camera camera;
+    private SurfaceHolder surfaceHolder;
+    private SurfaceView surfaceView;
+    private ImageView shutterButton;
+    private ImageView filterButton;
+    private FilterDialog filterDialog;
+    private Bitmap originalImage;
+    private Bitmap filteredImage;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+    }
+    
+    
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) { 
+    	
+    	View view = inflater.inflate(R.layout.fragment3, null);
+    	
+    	surfaceView = (SurfaceView) view.findViewById(R.id.surfaceview);
+        surfaceView.getHolder().addCallback(this);
+        
+        shutterButton = (ImageView) view.findViewById(R.id.shutterButton);
+        filterButton = (ImageView) view.findViewById(R.id.filterButton);
+        filterDialog = new FilterDialog();
+        
+        shutterButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(getActivity().getApplicationContext(), "SNAP!", Toast.LENGTH_SHORT).show();	
+				camera.takePicture(mShutterCallback, mPictureCallback_RAW, mPictureCallback_JPG);
+			}
+			
+			ShutterCallback mShutterCallback = new ShutterCallback() {
+				@Override
+				public void onShutter() {
+					//TODO Auto-generated method stub
+				}
+			};
+			
+			PictureCallback mPictureCallback_RAW = new PictureCallback() {
+				@Override
+				public void onPictureTaken(byte[] arg0, Camera arg1) {
+					//TODO Auto-generated method stub
+				}
+			};
+			
+			PictureCallback mPictureCallback_JPG = new PictureCallback() {
+				@Override
+				public void onPictureTaken(byte[] arg0, Camera arg1) {
+					originalImage = BitmapFactory.decodeByteArray(arg0, 0, arg0.length);
+					//Bitmap bitmapPicture = BitmapFactory.decodeByteArray(arg0, 0, arg0.length);
+					filterButton.setVisibility(0);
+				}
+			};
+			
+		});
+        
+        filterButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {		
+				filterDialog.show(getActivity().getSupportFragmentManager(), "filters");
+				/*if (filterDialog.isChanged()) {
+					if(filterDialog.getSelectedFilter() == 0) {*/
+						Toast.makeText(getActivity().getApplicationContext(), String.valueOf(filterDialog.getSelectedFilter()), Toast.LENGTH_SHORT).show();	
+						displayImage(originalImage);
+				/*	} else {
+						
+					}
+				}*/
+			} });
+        
+
+        return view;
+    }
+    
+    public void displayImage(Bitmap image) {
+    	Toast.makeText(getActivity().getApplicationContext(), "SNAP!", Toast.LENGTH_SHORT).show();	
+    	Canvas canvas = surfaceHolder.lockCanvas();
+		Paint paint = new Paint();
+		paint.setFilterBitmap(true);
+		canvas.drawBitmap(image, 0,0 , paint);
+    }
+    
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        try {
+            camera = Camera.open(cameraId);
+        } catch (Exception exception) {
+            Log.e(TAG, "Can't open camera with id " + cameraId, exception);
+            return;
+        }
+    }
+    
+    
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        stopCameraPreview();
+        camera.release();
+    }
+    
+    
+    private synchronized void startCameraPreview() {
+        camera.setDisplayOrientation(90);
+        setupCamera();
+
+        try {
+            camera.setPreviewDisplay(surfaceHolder);
+            camera.startPreview();
+        } catch (IOException exception) {
+            Log.e(TAG, "Can't start camera preview due to IOException", exception);
+        }
+    }
+    
+    
+    private synchronized void stopCameraPreview() {
+        try {
+            camera.stopPreview();
+        } catch (Exception exception) {
+            Log.e(TAG, "Exception during stopping camera preview", exception);
+        }
+    }
+    
+    
+    public void setupCamera() {
+        Camera.Parameters parameters = camera.getParameters();
+
+        camera.setParameters(parameters);
+    }
+    
+    
+    @Override
+    public void surfaceCreated(SurfaceHolder holder) {
+        this.surfaceHolder = holder;
+
+        startCameraPreview();
+    }
+    
+    
+    @Override
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+        // The interface forces us to have this method but we don't need it
+        // up to now.
+    }
+    
+    
+    @Override
+    public void surfaceDestroyed(SurfaceHolder holder) {
+        // We don't need to handle this case as the fragment takes care of
+        // releasing the camera when needed.
+    }
+}
