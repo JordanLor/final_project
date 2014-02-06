@@ -76,7 +76,7 @@ int drawable ic_launcher 0x7f020021
 int drawable shutter_black 0x7f020022
 int drawable shutter_blue 0x7f020023
 int id RelativeLayout1 0x7f04001b
-int id action_settings 0x7f04001f
+int id action_settings 0x7f040020
 int id authButton 0x7f040019
 int id com_facebook_login_activity_progress_bar 0x7f040005
 int id com_facebook_picker_activity_circle 0x7f040004
@@ -98,12 +98,13 @@ int id com_facebook_search_bar_view 0x7f040013
 int id com_facebook_usersettingsfragment_login_button 0x7f040017
 int id com_facebook_usersettingsfragment_logo_image 0x7f040015
 int id com_facebook_usersettingsfragment_profile_name 0x7f040016
-int id filterButton 0x7f04001e
+int id filterButton 0x7f04001f
 int id large 0x7f040002
 int id normal 0x7f040001
+int id photoView 0x7f04001d
 int id picker_subtitle 0x7f040012
 int id selection_profile_pic 0x7f04001a
-int id shutterButton 0x7f04001d
+int id shutterButton 0x7f04001e
 int id small 0x7f040000
 int id surfaceview 0x7f04001c
 int id takepicture 0x7f040018

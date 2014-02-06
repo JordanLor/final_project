@@ -1,0 +1,51 @@
+package com.project.utils;
+
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Paint;
+
+public class Filters {
+		
+	public static final String[] AVAILABLE_FILTERS = {"None", "Greyscale", "Sepia"};
+	
+	// Utility class - should not be instantiated
+	private Filters() {
+		
+	}
+	
+	public static Bitmap filterImage(Bitmap image, int filter) {
+		if(filter == 1) {
+			return grayscaleFilter(image);
+		} else if (filter == 2) {
+			return sepiaFilter(image);
+		} else
+			return image;
+	}
+
+	private static Bitmap sepiaFilter(Bitmap image) {
+		// TODO Auto-generated method stub
+		return image;
+	}
+
+	private static Bitmap grayscaleFilter(Bitmap image) {
+		
+		Bitmap grayscaleImage = Bitmap.createBitmap(image.getWidth(), image.getHeight(), Bitmap.Config.ARGB_8888);
+		Canvas filterCanvas = new Canvas(grayscaleImage);
+		
+		ColorMatrix grayscaleMatrix = new ColorMatrix();
+		grayscaleMatrix.setSaturation(0f);
+		
+		ColorMatrixColorFilter colorFilter = new ColorMatrixColorFilter(grayscaleMatrix);
+		
+		Paint paint = new Paint();
+		paint.setColorFilter(colorFilter);
+		
+		filterCanvas.drawBitmap(image, 0, 0, paint);
+		
+		return grayscaleImage;
+	}
+	
+
+}
