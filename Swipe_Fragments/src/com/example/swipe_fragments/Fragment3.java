@@ -41,6 +41,7 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 	private ImageView photoView;
 	private ImageView shutterButton;
 	private ImageView filterButton;
+	private ImageView eraseButton;
 	private FilterDialog filterDialog;
 	private Bitmap bitmapPicture;
 	private Bitmap filteredBitmap;
@@ -61,9 +62,13 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 		surfaceView.getHolder().addCallback(this);
 
 		photoView = (ImageView) view.findViewById(R.id.photoView);
+		
 		shutterButton = (ImageView) view.findViewById(R.id.shutterButton);
+		
 		filterButton = (ImageView) view.findViewById(R.id.filterButton);
 		filterDialog = new FilterDialog();
+		
+		eraseButton = (ImageView) view.findViewById(R.id.eraseButton);
 
 
 
@@ -74,7 +79,14 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(getActivity().getApplicationContext(), "SNAP!", Toast.LENGTH_SHORT).show();	
+				filterButton.setVisibility(View.VISIBLE);
+				filterButton.bringToFront(); 
+				
+				eraseButton.setVisibility(View.VISIBLE);
+				eraseButton.bringToFront();	
+				
+				shutterButton.setVisibility(View.INVISIBLE);
+				
 				camera.takePicture(mShutterCallback, mPictureCallback_RAW, mPictureCallback_JPG);
 			}
 
@@ -106,9 +118,7 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 					Matrix matrix = new Matrix();
 					matrix.postRotate(90);
 					bitmapPicture = Bitmap.createBitmap(bitmapPicture, 0, 
-							0, bitmapPicture.getWidth(), bitmapPicture.getHeight(), matrix, true);
-					// Show filter button
-					filterButton.setVisibility(0);
+							0, bitmapPicture.getWidth(), bitmapPicture.getHeight(), matrix, true);					
 				}
 			};
 
@@ -119,6 +129,19 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 			public void onClick(View v) {		
 				filterDialog.show(getActivity().getSupportFragmentManager(), "filters");
 			} });
+		
+		eraseButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				filterButton.setVisibility(View.INVISIBLE);
+				eraseButton.setVisibility(View.INVISIBLE);
+				shutterButton.setVisibility(View.VISIBLE);
+				
+				//Code here to restart camera preview.
+				
+			}
+		});
 
 
 		return view;

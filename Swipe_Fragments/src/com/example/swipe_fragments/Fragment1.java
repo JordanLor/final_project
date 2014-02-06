@@ -1,4 +1,4 @@
-//Test comment.
+
 
 package com.example.swipe_fragments;
 

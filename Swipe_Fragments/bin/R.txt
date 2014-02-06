@@ -71,12 +71,12 @@ int drawable com_facebook_profile_picture_blank_square 0x7f02001c
 int drawable com_facebook_top_background 0x7f02001d
 int drawable com_facebook_top_button 0x7f02001e
 int drawable com_facebook_usersettingsfragment_background_gradient 0x7f02001f
-int drawable grayscale_icon 0x7f020020
-int drawable ic_launcher 0x7f020021
-int drawable shutter_black 0x7f020022
-int drawable shutter_blue 0x7f020023
+int drawable erase_black 0x7f020020
+int drawable filter_black 0x7f020021
+int drawable ic_launcher 0x7f020022
+int drawable shutter_black 0x7f020023
 int id RelativeLayout1 0x7f04001b
-int id action_settings 0x7f040020
+int id action_settings 0x7f040021
 int id authButton 0x7f040019
 int id com_facebook_login_activity_progress_bar 0x7f040005
 int id com_facebook_picker_activity_circle 0x7f040004
@@ -98,6 +98,7 @@ int id com_facebook_search_bar_view 0x7f040013
 int id com_facebook_usersettingsfragment_login_button 0x7f040017
 int id com_facebook_usersettingsfragment_logo_image 0x7f040015
 int id com_facebook_usersettingsfragment_profile_name 0x7f040016
+int id eraseButton 0x7f040020
 int id filterButton 0x7f04001f
 int id large 0x7f040002
 int id normal 0x7f040001

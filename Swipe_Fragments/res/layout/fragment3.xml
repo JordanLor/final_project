@@ -22,16 +22,25 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/shutter_blue" />
+        android:src="@drawable/shutter_black" />
 
     <ImageView
         android:id="@+id/filterButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignTop="@+id/shutterButton"
-        android:src="@drawable/grayscale_icon"
+        android:layout_toLeftOf="@+id/shutterButton"
+        android:layout_marginRight="5dp"
+        android:src="@drawable/filter_black"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/eraseButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/filterButton"
+        android:src="@drawable/erase_black"
         android:visibility="invisible" />
 
 </RelativeLayout>
