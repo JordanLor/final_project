@@ -97,9 +97,8 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 				public void onPictureTaken(byte[] arg0, Camera arg1) {
 
 					
-					// Reduce image size to closest possible to 720x 1280 while maintaining
-					// image ratio (solves out of memory issues on real android devices,
-					// may not be noticed on emulated devices)
+					// Reduce image size to closest possible to 1280x720 while maintaining
+					// image ratio (solves out of memory issues on real android devices
 					bitmapPicture = com.project.utils.ImageTools.decodeResizedBitmap(arg0);
 					
 					// Fix image rotation

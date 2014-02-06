@@ -10,8 +10,6 @@ public class ImageTools {
 
 	private final static int MIN_HEIGHT = 720, MIN_WIDTH = 1280;
 
-	// Attempts to produce a downsampling number as close as possible to above
-	// values
 	public static int calculateInSampleSize(BitmapFactory.Options options) {
 		int inSampleSize = 1;
 
@@ -29,8 +27,7 @@ public class ImageTools {
 		return inSampleSize;
 	}
 
-	// Decodes a byte array to a bmp at appropiate downsampling - solves
-	// out of memory issues on devices
+
 	public static Bitmap decodeResizedBitmap(byte[] bytes) {
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		

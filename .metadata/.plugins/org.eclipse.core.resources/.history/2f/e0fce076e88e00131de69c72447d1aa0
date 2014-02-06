@@ -10,7 +10,6 @@ public class Filters {
 	
 	public static final String[] AVAILABLE_FILTERS = {"None", "Greyscale", "Sepia"};
 	
-	// Access method for filtering
 	public static Bitmap filterImage(Bitmap image, int filter) {
 		if(filter == 1) {
 			return grayscaleFilter(image);

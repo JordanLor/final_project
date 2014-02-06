@@ -1,1 +1,6 @@
 1391551847610	Delete element
+1391660480850	Rename local variable 'bm'
+1391660505358	Rename local variable 'c'
+1391660513870	Rename local variable 'f'
+1391660532903	Rename local variable 'grayscaleFilter'
+1391660540915	Rename local variable 'grayscaleMatrix'
