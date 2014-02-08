@@ -77,7 +77,7 @@ int drawable filter_black 0x7f020022
 int drawable ic_launcher 0x7f020023
 int drawable shutter_black 0x7f020024
 int id RelativeLayout1 0x7f04001c
-int id action_settings 0x7f040022
+int id action_settings 0x7f040025
 int id authButton 0x7f040019
 int id com_facebook_login_activity_progress_bar 0x7f040005
 int id com_facebook_picker_activity_circle 0x7f040004
@@ -101,6 +101,7 @@ int id com_facebook_usersettingsfragment_logo_image 0x7f040015
 int id com_facebook_usersettingsfragment_profile_name 0x7f040016
 int id eraseButton 0x7f040021
 int id filterButton 0x7f040020
+int id icon 0x7f040022
 int id large 0x7f040002
 int id normal 0x7f040001
 int id photoView 0x7f04001e
@@ -111,6 +112,8 @@ int id shutterButton 0x7f04001f
 int id small 0x7f040000
 int id surfaceview 0x7f04001d
 int id takepicture 0x7f040018
+int id text1 0x7f040023
+int id text2 0x7f040024
 int id viewpager 0x01010000
 int layout activity_main 0x7f030000
 int layout com_facebook_friendpickerfragment 0x7f030001
@@ -133,7 +136,8 @@ int layout fragment2 0x7f030011
 int layout fragment3 0x7f030012
 int layout fragment4 0x7f030013
 int layout fragment5 0x7f030014
-int layout viewpager_layout 0x7f030015
+int layout listitem 0x7f030015
+int layout viewpager_layout 0x7f030016
 int menu main 0x7f090000
 int string action_settings 0x7f07001a
 int string app_id 0x7f07001c

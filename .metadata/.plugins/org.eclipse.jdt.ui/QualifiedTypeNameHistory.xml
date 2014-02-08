@@ -17,5 +17,9 @@
 <fullyQualifiedTypeName name="android.graphics.Paint"/>
 <fullyQualifiedTypeName name="android.graphics.Bitmap"/>
 <fullyQualifiedTypeName name="android.widget.ImageView"/>
+<fullyQualifiedTypeName name="android.view.View"/>
 <fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
+<fullyQualifiedTypeName name="android.widget.TextView"/>
+<fullyQualifiedTypeName name="com.example.swipe_fragments.Fragment2.ActionListAdapter"/>
+<fullyQualifiedTypeName name="com.facebook.Session"/>
 </qualifiedTypeNameHistroy>
