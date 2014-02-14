@@ -62,8 +62,6 @@
         android:ems="10"
         android:visibility="invisible"
         android:background="@color/translucentGray">
-
-        <requestFocus />
     </EditText>
 
 </RelativeLayout>

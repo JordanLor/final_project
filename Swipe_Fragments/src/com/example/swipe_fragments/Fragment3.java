@@ -21,10 +21,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -149,6 +152,7 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 				eraseButton.setVisibility(View.INVISIBLE);
 				annoteButton.setVisibility(View.INVISIBLE);
 				annotationText.setVisibility(View.INVISIBLE);
+				annotationText.setText("");
 				shutterButton.setVisibility(View.VISIBLE);
 				
 				//Code here to restart camera preview.
@@ -156,14 +160,36 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 			}
 		});
 		
+		// Show annotation edittext, open keyboard with edittext as target
 		annoteButton.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
+				InputMethodManager manager = (InputMethodManager) v.getContext()
+						.getSystemService(Context.INPUT_METHOD_SERVICE);
 				annotationText.setVisibility(View.VISIBLE);
+				manager.showSoftInput(annotationText, 0);
 				
 			}
 			
 		});
+		
+		// Remove keyboard when clicked out of - hide annotation if no text entered
+		view.findViewById(R.id.RelativeLayout1).setOnTouchListener(new OnTouchListener() {
+
+			@Override
+			public boolean onTouch(View v, MotionEvent e) {
+				InputMethodManager manager = (InputMethodManager) v.getContext()
+						.getSystemService(Context.INPUT_METHOD_SERVICE);
+				manager.hideSoftInputFromWindow(annotationText.getWindowToken(), 0);
+				if(annotationText.getText() == null || annotationText.getText().length() == 0) {
+					annotationText.setVisibility(View.INVISIBLE);
+				}
+				return true;
+			}
+			
+		});
+		
+		
 
 
 		return view;

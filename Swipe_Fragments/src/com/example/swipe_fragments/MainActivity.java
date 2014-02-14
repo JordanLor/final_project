@@ -3,10 +3,15 @@ package com.example.swipe_fragments;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnTouchListener;
+import android.view.inputmethod.InputMethodManager;
 
 public class MainActivity extends FragmentActivity {
 
@@ -27,5 +32,6 @@ public class MainActivity extends FragmentActivity {
 		mPageAdapter = new PageAdapter(getSupportFragmentManager(), fragments);
 		ViewPager pager = (ViewPager) findViewById(R.id.viewpager);
 		pager.setAdapter(mPageAdapter);
+		
 	} 
 }
