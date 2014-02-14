@@ -22,4 +22,8 @@
 <fullyQualifiedTypeName name="android.widget.TextView"/>
 <fullyQualifiedTypeName name="com.example.swipe_fragments.Fragment2.ActionListAdapter"/>
 <fullyQualifiedTypeName name="com.facebook.Session"/>
+<fullyQualifiedTypeName name="android.widget.EditText"/>
+<fullyQualifiedTypeName name="com.example.swipe_fragments.R.id"/>
+<fullyQualifiedTypeName name="android.content.Context"/>
+<fullyQualifiedTypeName name="android.view.inputmethod.InputMethodManager"/>
 </qualifiedTypeNameHistroy>

@@ -6,6 +6,7 @@ import com.project.utils.FilterDialog;
 import com.project.utils.Filters;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
@@ -25,6 +26,8 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -42,6 +45,8 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 	private ImageView shutterButton;
 	private ImageView filterButton;
 	private ImageView eraseButton;
+	private ImageView annoteButton;
+	private EditText annotationText;
 	private FilterDialog filterDialog;
 	private Bitmap bitmapPicture;
 	private Bitmap filteredBitmap;
@@ -68,6 +73,9 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 		filterButton = (ImageView) view.findViewById(R.id.filterButton);
 		filterDialog = new FilterDialog();
 		
+		annoteButton = (ImageView) view.findViewById(R.id.annoteButton);
+		annotationText = (EditText) view.findViewById(R.id.annotationText);
+		
 		eraseButton = (ImageView) view.findViewById(R.id.eraseButton);
 
 
@@ -84,6 +92,9 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 				
 				eraseButton.setVisibility(View.VISIBLE);
 				eraseButton.bringToFront();	
+				
+				annoteButton.setVisibility(View.VISIBLE);
+				annoteButton.bringToFront();
 				
 				shutterButton.setVisibility(View.INVISIBLE);
 				
@@ -136,11 +147,22 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 			public void onClick(View v) {
 				filterButton.setVisibility(View.INVISIBLE);
 				eraseButton.setVisibility(View.INVISIBLE);
+				annoteButton.setVisibility(View.INVISIBLE);
+				annotationText.setVisibility(View.INVISIBLE);
 				shutterButton.setVisibility(View.VISIBLE);
 				
 				//Code here to restart camera preview.
 				
 			}
+		});
+		
+		annoteButton.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View v) {
+				annotationText.setVisibility(View.VISIBLE);
+				
+			}
+			
 		});
 
 

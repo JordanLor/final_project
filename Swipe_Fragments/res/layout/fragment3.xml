@@ -43,4 +43,27 @@
         android:src="@drawable/erase_black"
         android:visibility="invisible" />
 
+    <ImageView
+        android:id="@+id/annoteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/shutterButton"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/black_text"
+        android:visibility="invisible" />
+    
+    <EditText
+        android:id="@+id/annotationText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:visibility="invisible"
+        android:background="@color/translucentGray">
+
+        <requestFocus />
+    </EditText>
+
 </RelativeLayout>
