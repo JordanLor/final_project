@@ -49,6 +49,7 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 	private ImageView filterButton;
 	private ImageView eraseButton;
 	private ImageView annoteButton;
+	private ImageView cameraFlipButton;
 	private EditText annotationText;
 	private FilterDialog filterDialog;
 	private Bitmap bitmapPicture;
@@ -80,6 +81,8 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 		annotationText = (EditText) view.findViewById(R.id.annotationText);
 		
 		eraseButton = (ImageView) view.findViewById(R.id.eraseButton);
+		
+		cameraFlipButton = (ImageView) view.findViewById(R.id.cameraFlipButton);
 
 
 
@@ -99,7 +102,10 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 				annoteButton.setVisibility(View.VISIBLE);
 				annoteButton.bringToFront();
 				
+				cameraFlipButton.setVisibility(View.INVISIBLE);
+				
 				shutterButton.setVisibility(View.INVISIBLE);
+				
 				
 				camera.takePicture(mShutterCallback, mPictureCallback_RAW, mPictureCallback_JPG);
 			}
@@ -142,7 +148,20 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 			@Override
 			public void onClick(View v) {		
 				filterDialog.show(getActivity().getSupportFragmentManager(), "filters");
-			} });
+			} 
+		});
+		
+		cameraFlipButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				if(cameraId == 0)
+					cameraId = 1;
+				else
+					cameraId = 0;
+				
+				restartCameraPreview(cameraId);
+			}
+		});
 		
 		eraseButton.setOnClickListener(new OnClickListener() {
 			
@@ -153,10 +172,11 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 				annoteButton.setVisibility(View.INVISIBLE);
 				annotationText.setVisibility(View.INVISIBLE);
 				annotationText.setText("");
+				cameraFlipButton.setVisibility(View.VISIBLE);
 				shutterButton.setVisibility(View.VISIBLE);
 				
 				//Code here to restart camera preview.
-				
+				restartCameraPreview(cameraId);
 			}
 		});
 		
@@ -238,6 +258,22 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 		} catch (Exception exception) {
 			Log.e(TAG, "Exception during stopping camera preview", exception);
 		}
+	}
+	
+	private synchronized void restartCameraPreview(int cameraId) {
+		this.cameraId = cameraId;
+		stopCameraPreview();
+		camera.release();
+		
+		try {
+			camera = Camera.open(cameraId);
+			Log.e(TAG, "Camera ID: " + cameraId);
+		} catch (Exception exception) {
+			Log.e(TAG, "Can't open camera with id " + cameraId, exception);
+			return;
+		}
+		
+		startCameraPreview();
 	}
 
 
