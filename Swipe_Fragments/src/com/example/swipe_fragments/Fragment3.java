@@ -39,6 +39,8 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 	public static final String TAG = "Fragment3";
 
 	private final int REQUEST_CODE = 3;
+	
+	private boolean flashOn = false;
 
 	private int cameraId;
 	private Camera camera;
@@ -49,6 +51,8 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 	private ImageView filterButton;
 	private ImageView eraseButton;
 	private ImageView annoteButton;
+	private ImageView flashOffButton;
+	private ImageView flashOnButton;
 	private ImageView cameraFlipButton;
 	private EditText annotationText;
 	private FilterDialog filterDialog;
@@ -83,6 +87,9 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 		eraseButton = (ImageView) view.findViewById(R.id.eraseButton);
 		
 		cameraFlipButton = (ImageView) view.findViewById(R.id.cameraFlipButton);
+		
+		flashOffButton = (ImageView) view.findViewById(R.id.flashOffButton);
+		flashOnButton = (ImageView) view.findViewById(R.id.flashOnButton);
 
 
 
@@ -105,6 +112,9 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 				cameraFlipButton.setVisibility(View.INVISIBLE);
 				
 				shutterButton.setVisibility(View.INVISIBLE);
+				
+				flashOffButton.setVisibility(View.INVISIBLE);
+				flashOnButton.setVisibility(View.INVISIBLE);
 				
 				
 				camera.takePicture(mShutterCallback, mPictureCallback_RAW, mPictureCallback_JPG);
@@ -175,8 +185,34 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 				cameraFlipButton.setVisibility(View.VISIBLE);
 				shutterButton.setVisibility(View.VISIBLE);
 				
+				if(flashOn)
+					flashOnButton.setVisibility(View.VISIBLE);
+				else
+					flashOffButton.setVisibility(View.VISIBLE);
+				
 				//Code here to restart camera preview.
 				restartCameraPreview(cameraId);
+			}
+		});
+		
+		flashOnButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				flashOn = true;
+				flashOnButton.setVisibility(View.INVISIBLE);
+				flashOffButton.setVisibility(View.VISIBLE);
+				
+			}
+		});
+		
+		flashOffButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				flashOn = false;
+				flashOffButton.setVisibility(View.INVISIBLE);
+				flashOnButton.setVisibility(View.VISIBLE);
 			}
 		});
 		

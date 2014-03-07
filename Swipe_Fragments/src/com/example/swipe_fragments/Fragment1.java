@@ -19,12 +19,18 @@ import com.facebook.model.GraphUser;
 import com.facebook.widget.LoginButton;
 import com.facebook.widget.ProfilePictureView;
 
+
+
+
+
 public class Fragment1 extends Fragment {
 	
 	private static final int REAUTH_ACTIVIY_CODE = 100;
 	private static final String TAG = "Fragment1";
 	private UiLifecycleHelper uiHelper;
 	private ProfilePictureView profilePictureView;
+	
+	
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		
