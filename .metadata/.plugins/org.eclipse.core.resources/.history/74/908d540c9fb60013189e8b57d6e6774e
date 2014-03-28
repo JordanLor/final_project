@@ -140,9 +140,12 @@ public class Fragment1 extends Fragment {
 	    if (requestCode == REAUTH_ACTIVIY_CODE) {
 	      uiHelper.onActivityResult(requestCode, resultCode, data);
 	    } else if (resultCode == Activity.RESULT_OK) {
-	    	//The following line shouldn't be here according to FB. For some reason REAUTH and activityCode are not matching, will checkout later...
 	    	uiHelper.onActivityResult(requestCode, resultCode, data); 
-	    } 
+	    } else {  /////THIS ELSE STATEMENT SHOULDN'T BE NEEDED ACCORDING TO FB DOCS... FOR SOME REASON
+	    	      /////THE requestCode does not equal the REAUTH_ACTIVITY_CODE. This else statement mitigates 
+	    		  /////Login problems due to this issue.   Will check it out later. 
+	    	uiHelper.onActivityResult(requestCode, resultCode, data); 
+	    }
 	    
 	    
 	}
@@ -231,7 +234,7 @@ public class Fragment1 extends Fragment {
 	        return new View.OnClickListener() {
 	            @Override
 	            public void onClick(View view) {
-	            	startPickerActivity(PickerActivity.FRIEND_PICKER, getRequestCode());
+	                // Do nothing for now
 	            }
 	        };
 	    }

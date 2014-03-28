@@ -136,15 +136,12 @@ public class Fragment1 extends Fragment {
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-	    super.onActivityResult(requestCode, resultCode, data);
-	    if (requestCode == REAUTH_ACTIVIY_CODE) {
-	      uiHelper.onActivityResult(requestCode, resultCode, data);
-	    } else if (resultCode == Activity.RESULT_OK) {
-	    	//The following line shouldn't be here according to FB. For some reason REAUTH and activityCode are not matching, will checkout later...
-	    	uiHelper.onActivityResult(requestCode, resultCode, data); 
-	    } 
-	    
-	    
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == REAUTH_ACTIVIY_CODE) {
+			uiHelper.onActivityResult(requestCode, resultCode, data);
+		} else if (resultCode == Activity.RESULT_OK) {
+			//Do nothing for now
+		}
 	}
 	
 	@Override
@@ -231,7 +228,7 @@ public class Fragment1 extends Fragment {
 	        return new View.OnClickListener() {
 	            @Override
 	            public void onClick(View view) {
-	            	startPickerActivity(PickerActivity.FRIEND_PICKER, getRequestCode());
+	                // Do nothing for now
 	            }
 	        };
 	    }

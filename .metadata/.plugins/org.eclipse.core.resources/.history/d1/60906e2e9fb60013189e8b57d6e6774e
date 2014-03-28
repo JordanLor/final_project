@@ -231,7 +231,7 @@ public class Fragment1 extends Fragment {
 	        return new View.OnClickListener() {
 	            @Override
 	            public void onClick(View view) {
-	            	startPickerActivity(PickerActivity.FRIEND_PICKER, getRequestCode());
+	                // Do nothing for now
 	            }
 	        };
 	    }
