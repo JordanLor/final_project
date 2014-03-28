@@ -2,7 +2,6 @@
 
 package com.example.swipe_fragments;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -15,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.facebook.Request;
@@ -38,9 +36,6 @@ public class Fragment1 extends Fragment {
 	private UiLifecycleHelper uiHelper;
 	private ProfilePictureView profilePictureView;
 	
-	private ListView listView;
-	private List<BaseListElement> listElements;
-	
 	
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,13 +50,6 @@ public class Fragment1 extends Fragment {
 		
 		LoginButton authButton = (LoginButton) view.findViewById(R.id.authButton);
 		authButton.setFragment(this);
-		
-		listView = (ListView)view.findViewById(R.id.selection_list);
-		listElements = new ArrayList<BaseListElement>();
-		listElements.add(new PeopleListElement(0));
-		listView.setAdapter(new ActionListAdapter(getActivity(), R.id.selection_list, listElements));
-		
-		Session session = Session.getActiveSession();
 				
 		return view;
 	}
