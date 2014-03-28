@@ -236,7 +236,7 @@ containing a value of this type.
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f04001c;
-        public static final int action_settings=0x7f04002a;
+        public static final int action_settings=0x7f04002b;
         public static final int annotationText=0x7f040023;
         public static final int annoteButton=0x7f040022;
         public static final int authButton=0x7f040019;
@@ -269,6 +269,7 @@ containing a value of this type.
         public static final int large=0x7f040002;
         public static final int normal=0x7f040001;
         public static final int photoView=0x7f04001e;
+        public static final int picker_fragment=0x7f04002a;
         public static final int picker_subtitle=0x7f040012;
         public static final int selection_list=0x7f04001b;
         public static final int selection_profile_pic=0x7f04001a;
@@ -303,7 +304,8 @@ containing a value of this type.
         public static final int fragment4=0x7f030013;
         public static final int fragment5=0x7f030014;
         public static final int listitem=0x7f030015;
-        public static final int viewpager_layout=0x7f030016;
+        public static final int pickers=0x7f030016;
+        public static final int viewpager_layout=0x7f030017;
     }
     public static final class menu {
         public static final int main=0x7f090000;

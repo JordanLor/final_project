@@ -4,7 +4,6 @@ INDEX VERSION 1.126+C:\Users\Anthony\final_project\.metadata\.plugins\org.eclips
 3048959020.index
 3065416851.index
 2129341659.index
-2176265098.index
 3493682777.index
 736125211.index
 1970013852.index

@@ -89,7 +89,7 @@ int drawable shutter_black 0x7f02002d
 int drawable shutter_blue 0x7f02002e
 int drawable speech_balloon 0x7f02002f
 int id RelativeLayout1 0x7f04001c
-int id action_settings 0x7f04002a
+int id action_settings 0x7f04002b
 int id annotationText 0x7f040023
 int id annoteButton 0x7f040022
 int id authButton 0x7f040019
@@ -122,6 +122,7 @@ int id icon 0x7f040027
 int id large 0x7f040002
 int id normal 0x7f040001
 int id photoView 0x7f04001e
+int id picker_fragment 0x7f04002a
 int id picker_subtitle 0x7f040012
 int id selection_list 0x7f04001b
 int id selection_profile_pic 0x7f04001a
@@ -154,7 +155,8 @@ int layout fragment3 0x7f030012
 int layout fragment4 0x7f030013
 int layout fragment5 0x7f030014
 int layout listitem 0x7f030015
-int layout viewpager_layout 0x7f030016
+int layout pickers 0x7f030016
+int layout viewpager_layout 0x7f030017
 int menu main 0x7f090000
 int string action_settings 0x7f07001a
 int string app_id 0x7f07001c
