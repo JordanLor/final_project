@@ -2,8 +2,16 @@
 
 package com.example.swipe_fragments;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Context;
@@ -25,6 +33,7 @@ import com.facebook.Response;
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
+import com.facebook.model.GraphObject;
 import com.facebook.model.GraphUser;
 import com.facebook.widget.LoginButton;
 import com.facebook.widget.ProfilePictureView;
@@ -52,7 +61,7 @@ public class Fragment1 extends Fragment {
 		//Find user's profile picture custom view
 		profilePictureView = (ProfilePictureView) view.findViewById(R.id.selection_profile_pic);
 		profilePictureView.setCropped(true);
-		
+		System.out.println("pic id: " + profilePictureView.getProfileId());
 		
 		
 		LoginButton authButton = (LoginButton) view.findViewById(R.id.authButton);
@@ -64,6 +73,14 @@ public class Fragment1 extends Fragment {
 		listView.setAdapter(new ActionListAdapter(getActivity(), R.id.selection_list, listElements));
 		
 		Session session = Session.getActiveSession();
+		
+		if (session.getState().isOpened()) {  //Already logged-in
+			listView.setVisibility(View.VISIBLE);
+		}
+		
+		if (session.getState().isClosed()) {  //Not logged-in
+			listView.setVisibility(View.INVISIBLE);
+		}
 				
 		return view;
 	}
@@ -71,8 +88,11 @@ public class Fragment1 extends Fragment {
 	private void onSessionStateChange(Session session, SessionState state, Exception exception) {
 		if (state.isOpened()) {
 			Log.i(TAG, "Logged in...");
+			listView.setVisibility(View.VISIBLE);
 		} else if (state.isClosed()) {
 			Log.i(TAG, "Logged out...");
+			listView.setVisibility(View.INVISIBLE);
+			profilePictureView.setProfileId(null);
 		}
 		
 		if (session != null && session.isOpened()) {
@@ -142,6 +162,7 @@ public class Fragment1 extends Fragment {
 	    } else if (resultCode == Activity.RESULT_OK) {
 	    	//The following line shouldn't be here according to FB. For some reason REAUTH and activityCode are not matching, will checkout later...
 	    	uiHelper.onActivityResult(requestCode, resultCode, data); 
+	    	//listElements.get(requestCode).onActivityResult(data);
 	    } 
 	    
 	    
@@ -218,6 +239,9 @@ public class Fragment1 extends Fragment {
 	}
 	
 	private class PeopleListElement extends BaseListElement {
+		
+		private List<GraphUser> selectedUsers;
+		private static final String FRIENDS_KEY = "friends";
 
 	    public PeopleListElement(int requestCode) {
 	        super(getActivity().getResources().getDrawable(R.drawable.action_people),
@@ -235,6 +259,112 @@ public class Fragment1 extends Fragment {
 	            }
 	        };
 	    }
+	    
+	    private void setUsersText() {
+	        String text = null;
+	        if (selectedUsers != null) {
+	                // If there is one friend
+	            if (selectedUsers.size() == 1) {
+	                text = String.format("%1$s",
+	                        selectedUsers.get(0).getName());
+	            } else if (selectedUsers.size() == 2) {
+	                // If there are two friends 
+	                text = String.format("%1$s and %2$s",
+	                        selectedUsers.get(0).getName(), 
+	                        selectedUsers.get(1).getName());
+	            } else if (selectedUsers.size() > 2) {
+	                // If there are more than two friends 
+	                text = String.format("%1$s and %2$s others",
+	                        selectedUsers.get(0).getName(), 
+	                        (selectedUsers.size() - 1));
+	            }   
+	        }   
+	        if (text == null) {
+	            // If no text, use the placeholder text
+	            text = "Select Friends";
+	        }   
+	        // Set the text in list element. This will notify the 
+	        // adapter that the data has changed to
+	        // refresh the list view.
+	        setText2(text);
+	 
+	    } 
+	    
+	    @Override
+	    protected void onActivityResult(Intent data) {
+	        selectedUsers = ((FacebookApplication) getActivity()
+	                 .getApplication())
+	                 .getSelectedUsers();
+	        setUsersText();
+	        notifyDataChanged();
+	    }
+	    
+	    private byte[] getByteArray(List<GraphUser> users) {
+	        // convert the list of GraphUsers to a list of String 
+	        // where each element is the JSON representation of the 
+	        // GraphUser so it can be stored in a Bundle
+	        List<String> usersAsString = new ArrayList<String>(users.size());
+
+	        for (GraphUser user : users) {
+	            usersAsString.add(user.getInnerJSONObject().toString());
+	        }   
+	        try {
+	            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+	            new ObjectOutputStream(outputStream).writeObject(usersAsString);
+	            return outputStream.toByteArray();
+	        } catch (IOException e) {
+	            Log.e(TAG, "Unable to serialize users.", e); 
+	        }   
+	        return null;
+	    }  
+	    
+	    @Override
+	    protected void onSaveInstanceState(Bundle bundle) {
+	        if (selectedUsers != null) {
+	            bundle.putByteArray(FRIENDS_KEY,
+	                    getByteArray(selectedUsers));
+	        }   
+	    } 
+	    
+	    private List<GraphUser> restoreByteArray(byte[] bytes) {
+	        try {
+	            @SuppressWarnings("unchecked")
+	            List<String> usersAsString =
+	                    (List<String>) (new ObjectInputStream
+	                                    (new ByteArrayInputStream(bytes)))
+	                                    .readObject();
+	            if (usersAsString != null) {
+	                List<GraphUser> users = new ArrayList<GraphUser>
+	                (usersAsString.size());
+	                for (String user : usersAsString) {
+	                    GraphUser graphUser = GraphObject.Factory
+	                    .create(new JSONObject(user), 
+	                                    GraphUser.class);
+	                    users.add(graphUser);
+	                }   
+	                return users;
+	            }   
+	        } catch (ClassNotFoundException e) {
+	            Log.e(TAG, "Unable to deserialize users.", e); 
+	        } catch (IOException e) {
+	            Log.e(TAG, "Unable to deserialize users.", e); 
+	        } catch (JSONException e) {
+	            Log.e(TAG, "Unable to deserialize users.", e); 
+	        }   
+	        return null;
+	    }
+	    
+	    @Override
+	    protected boolean restoreState(Bundle savedState) {
+	        byte[] bytes = savedState.getByteArray(FRIENDS_KEY);
+	        if (bytes != null) {
+	            selectedUsers = restoreByteArray(bytes);
+	            setUsersText();
+	            return true;
+	        }   
+	        return false;
+	    } 
+	    
 	}
 	
 }
