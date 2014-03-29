@@ -34,6 +34,7 @@ import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.model.GraphObject;
+import com.facebook.model.GraphPlace;
 import com.facebook.model.GraphUser;
 import com.facebook.widget.LoginButton;
 import com.facebook.widget.ProfilePictureView;
@@ -68,8 +69,17 @@ public class Fragment1 extends Fragment {
 		authButton.setFragment(this);
 		
 		listView = (ListView)view.findViewById(R.id.selection_list);
-		listElements = new ArrayList<BaseListElement>();
+		listElements = new ArrayList<BaseListElement>();		
 		listElements.add(new PeopleListElement(0));
+		if (savedInstanceState != null) {
+		    // Restore the state for each list element
+		    for (BaseListElement listElement : listElements) {
+		        listElement.restoreState(savedInstanceState);
+		    }   
+		}
+		
+		listElements.add(new LocationListElement(1));
+		
 		listView.setAdapter(new ActionListAdapter(getActivity(), R.id.selection_list, listElements));
 		
 		Session session = Session.getActiveSession();
@@ -162,7 +172,8 @@ public class Fragment1 extends Fragment {
 	    } else if (resultCode == Activity.RESULT_OK) {
 	    	//The following line shouldn't be here according to FB. For some reason REAUTH and activityCode are not matching, will checkout later...
 	    	uiHelper.onActivityResult(requestCode, resultCode, data); 
-	    	//listElements.get(requestCode).onActivityResult(data);
+	    	//The following line causes the app to crash if the user tries to logout and then log back in.
+	    	listElements.get(requestCode).onActivityResult(data);
 	    } 
 	    
 	    
@@ -181,9 +192,12 @@ public class Fragment1 extends Fragment {
 	}
 	
 	@Override
-	public void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-		uiHelper.onSaveInstanceState(outState);
+	public void onSaveInstanceState(Bundle bundle) {
+	    super.onSaveInstanceState(bundle);
+	    for (BaseListElement listElement : listElements) {
+	        listElement.onSaveInstanceState(bundle);
+	    }
+	    uiHelper.onSaveInstanceState(bundle);
 	}
 	
 	private void startPickerActivity(Uri data, int requestCode) {
@@ -365,6 +379,72 @@ public class Fragment1 extends Fragment {
 	        return false;
 	    } 
 	    
+	}
+	
+	private class LocationListElement extends BaseListElement {
+
+		private GraphPlace selectedPlace = null;
+		private static final String PLACE_KEY = "place";
+		
+	    public LocationListElement(int requestCode) {
+	        super(getActivity().getResources()
+	              .getDrawable(R.drawable.action_location),"Location:","Select one",
+	              requestCode);
+	    }
+
+	    @Override
+	    protected View.OnClickListener getOnClickListener() {
+	        return new View.OnClickListener() {
+	            @Override
+	            public void onClick(View view) {
+	                startPickerActivity(PickerActivity.PLACE_PICKER, getRequestCode());
+	            }
+	        };
+	    }
+	    
+	    private void setPlaceText() {
+	        String text = null;
+	        if (selectedPlace != null) {
+	            text = selectedPlace.getName();
+	        }   
+	        if (text == null) {
+	            text = "Select one";
+	        }   
+	        setText2(text);
+	    }
+	    
+	    @Override
+	    protected void onActivityResult(Intent data) {
+	        selectedPlace = ((FacebookApplication) getActivity()
+	                .getApplication()).getSelectedPlace();
+	        setPlaceText();
+	        notifyDataChanged();
+	    }  
+	    
+	    @Override
+	    protected void onSaveInstanceState(Bundle bundle) {
+	        if (selectedPlace != null) {
+	            bundle.putString(PLACE_KEY, 
+	                    selectedPlace.getInnerJSONObject().toString());
+	        }   
+	    }
+	    
+	    @Override
+	    protected boolean restoreState(Bundle savedState) {
+	        String place = savedState.getString(PLACE_KEY);
+	        if (place != null) {
+	            try {
+	                selectedPlace = GraphObject.Factory.create(
+	                        new JSONObject(place), 
+	                        GraphPlace.class);
+	                setPlaceText();
+	                return true;
+	            } catch (JSONException e) {
+	                Log.e(TAG, "Unable to deserialize place.", e); 
+	            }   
+	        }   
+	        return false;
+	    }  
 	}
 	
 }

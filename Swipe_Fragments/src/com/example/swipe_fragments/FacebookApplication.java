@@ -3,12 +3,14 @@ import java.util.List;
 
 import android.app.Application;
 
+import com.facebook.model.GraphPlace;
 import com.facebook.model.GraphUser;
 
 
 public class FacebookApplication extends Application{
 	
 	private List<GraphUser> selectedUsers;
+	private GraphPlace selectedPlace;
 	
 	public List<GraphUser> getSelectedUsers() {
 	    return selectedUsers;
@@ -17,5 +19,14 @@ public class FacebookApplication extends Application{
 	public void setSelectedUsers(List<GraphUser> users) {
 	    selectedUsers = users;
 	}
+	
+	public GraphPlace getSelectedPlace() {
+	    return selectedPlace;
+	}
+
+	public void setSelectedPlace(GraphPlace place) {
+	    this.selectedPlace = place;
+	}
+
 
 }
