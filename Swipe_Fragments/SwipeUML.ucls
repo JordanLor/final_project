@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="com.example.swipe_fragments.Fragment3" project="Swipe_Fragments" 
+    file="/Swipe_Fragments/src/com/example/swipe_fragments/Fragment3.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="639" width="293" x="1716" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.example.swipe_fragments.Fragment2" project="Swipe_Fragments" 
+    file="/Swipe_Fragments/src/com/example/swipe_fragments/Fragment2.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="293" x="2049" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.example.swipe_fragments.Fragment5" project="Swipe_Fragments" 
+    file="/Swipe_Fragments/src/com/example/swipe_fragments/Fragment5.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1558" y="403"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.example.swipe_fragments.Fragment4" project="Swipe_Fragments" 
+    file="/Swipe_Fragments/src/com/example/swipe_fragments/Fragment4.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1556" y="286"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="com.project.utils.Filters" project="Swipe_Fragments" 
+    file="/Swipe_Fragments/src/com/project/utils/Filters.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1289" y="310"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="6" language="java" name="com.project.utils.FilterDialog.FilterDialogListener" project="Swipe_Fragments" 
+    file="/Swipe_Fragments/src/com/project/utils/FilterDialog.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="237" x="1523" y="927"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="7" language="java" name="com.example.swipe_fragments.Fragment1" project="Swipe_Fragments" 
+    file="/Swipe_Fragments/src/com/example/swipe_fragments/Fragment1.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2210" y="357"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="com.example.swipe_fragments.MainActivity" project="Swipe_Fragments" 
+    file="/Swipe_Fragments/src/com/example/swipe_fragments/MainActivity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2140" y="614"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="com.example.swipe_fragments.PickerActivity" project="Swipe_Fragments" 
+    file="/Swipe_Fragments/src/com/example/swipe_fragments/PickerActivity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1318" y="645"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="com.example.swipe_fragments.Fragment2.PeopleListElement" 
+    project="Swipe_Fragments" file="/Swipe_Fragments/src/com/example/swipe_fragments/Fragment2.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1656" y="1111"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="com.example.swipe_fragments.BaseListElement" project="Swipe_Fragments" 
+    file="/Swipe_Fragments/src/com/example/swipe_fragments/BaseListElement.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1963" y="1109"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="com.example.swipe_fragments.PageAdapter" project="Swipe_Fragments" 
+    file="/Swipe_Fragments/src/com/example/swipe_fragments/PageAdapter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2307" y="996"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="com.example.swipe_fragments.Fragment1.LocationListElement" 
+    project="Swipe_Fragments" file="/Swipe_Fragments/src/com/example/swipe_fragments/Fragment1.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2277" y="1243"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="com.project.utils.ImageTools" project="Swipe_Fragments" 
+    file="/Swipe_Fragments/src/com/project/utils/ImageTools.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="203" x="1208" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="com.example.swipe_fragments.Fragment1.PeopleListElement" 
+    project="Swipe_Fragments" file="/Swipe_Fragments/src/com/example/swipe_fragments/Fragment1.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1635" y="1294"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="com.example.swipe_fragments.Fragment1.ActionListAdapter" 
+    project="Swipe_Fragments" file="/Swipe_Fragments/src/com/example/swipe_fragments/Fragment1.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="283" x="2165" y="716"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="com.project.utils.FilterDialog" project="Swipe_Fragments" 
+    file="/Swipe_Fragments/src/com/project/utils/FilterDialog.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="172" x="1523" y="716"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="com.example.swipe_fragments.FacebookApplication" project="Swipe_Fragments" 
+    file="/Swipe_Fragments/src/com/example/swipe_fragments/FacebookApplication.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="189" width="225" x="1451" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="com.example.swipe_fragments.Fragment2.ActionListAdapter" 
+    project="Swipe_Fragments" file="/Swipe_Fragments/src/com/example/swipe_fragments/Fragment2.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="283" x="1821" y="716"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <nesting id="20">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="6"/>  
+  </nesting>  
+  <association id="21">    
+    <bendpoint x="2478" y="716"/>    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="22" name="listElements"/>      
+      <multiplicity id="23" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="24">    
+    <bendpoint x="1790" y="716"/>    
+    <bendpoint x="1790" y="927"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="10"/>  
+  </nesting>  
+  <association id="25">    
+    <bendpoint x="2134" y="716"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="26" name="listElements"/>      
+      <multiplicity id="27" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="28">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="29" name="filterDialog"/>      
+      <multiplicity id="30" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="31">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="32" name="mPageAdapter"/>      
+      <multiplicity id="33" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="34">    
+    <bendpoint x="2520" y="716"/>    
+    <bendpoint x="2520" y="927"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="13"/>  
+  </nesting>  
+  <realization id="35">    
+    <bendpoint x="1725" y="716"/>    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <association id="36">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="37" name="listElements"/>      
+      <multiplicity id="38" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="39">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <generalization id="40">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <association id="41">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="42" name="mListener"/>      
+      <multiplicity id="43" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="44">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="45" name="listElements"/>      
+      <multiplicity id="46" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="47">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="16"/>  
+  </nesting>  
+  <nesting id="48">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="19"/>  
+  </nesting>  
+  <nesting id="49">    
+    <bendpoint x="2499" y="716"/>    
+    <bendpoint x="2499" y="927"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="15"/>  
+  </nesting>  
+  <generalization id="50">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

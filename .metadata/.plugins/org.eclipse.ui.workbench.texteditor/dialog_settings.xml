@@ -13,14 +13,16 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="Pic" key="selection"/>
+		<item value="setAudio" key="selection"/>
 		<list key="findhistory">
-			<item value="pic"/>
-			<item value="default"/>
-			<item value="with whom"/>
-			<item value="onCreateView"/>
-			<item value="onCreateVview"/>
-			<item value="lock"/>
+			<item value="setaudio"/>
+			<item value="context"/>
+			<item value="toast"/>
+			<item value="pop"/>
+			<item value="snap"/>
+			<item value="pickera"/>
+			<item value="location"/>
+			<item value="facebooka"/>
 		</list>
 		<list key="replacehistory">
 		</list>

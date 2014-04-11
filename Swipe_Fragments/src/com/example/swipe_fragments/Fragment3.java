@@ -1,6 +1,8 @@
 package com.example.swipe_fragments;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import com.project.utils.FilterDialog;
 import com.project.utils.Filters;
@@ -17,6 +19,8 @@ import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
 import android.hardware.Camera.PictureCallback;
 import android.hardware.Camera.ShutterCallback;
+import android.media.MediaPlayer;
+import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -41,19 +45,26 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 	private final int REQUEST_CODE = 3;
 	
 	private boolean flashOn = false;
+	private boolean recordingAudio = false;
+	private boolean recordedAudio = false;
+	private boolean playingAudio = false;
 
 	private int cameraId;
 	private Camera camera;
+	private MediaRecorder mRecorder;
+	private MediaPlayer mPlayer;
 	private SurfaceHolder surfaceHolder;
 	private SurfaceView surfaceView;
 	private ImageView photoView;
 	private ImageView shutterButton;
 	private ImageView filterButton;
 	private ImageView eraseButton;
-	private ImageView annoteButton;
+	private ImageView annotateButton;
 	private ImageView flashOffButton;
 	private ImageView flashOnButton;
 	private ImageView cameraFlipButton;
+	private ImageView recordButton;
+	private ImageView playButton;
 	private EditText annotationText;
 	private FilterDialog filterDialog;
 	private Bitmap bitmapPicture;
@@ -81,7 +92,7 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 		filterButton = (ImageView) view.findViewById(R.id.filterButton);
 		filterDialog = new FilterDialog();
 		
-		annoteButton = (ImageView) view.findViewById(R.id.annoteButton);
+		annotateButton = (ImageView) view.findViewById(R.id.annoteButton);
 		annotationText = (EditText) view.findViewById(R.id.annotationText);
 		
 		eraseButton = (ImageView) view.findViewById(R.id.eraseButton);
@@ -90,7 +101,9 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 		
 		flashOffButton = (ImageView) view.findViewById(R.id.flashOffButton);
 		flashOnButton = (ImageView) view.findViewById(R.id.flashOnButton);
-
+		
+		recordButton = (ImageView) view.findViewById(R.id.recordButton);
+		playButton = (ImageView) view.findViewById(R.id.playButton);
 
 
 		// Needed to pass messages back to this fragment
@@ -106,8 +119,8 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 				eraseButton.setVisibility(View.VISIBLE);
 				eraseButton.bringToFront();	
 				
-				annoteButton.setVisibility(View.VISIBLE);
-				annoteButton.bringToFront();
+				annotateButton.setVisibility(View.VISIBLE);
+				annotateButton.bringToFront();
 				
 				cameraFlipButton.setVisibility(View.INVISIBLE);
 				
@@ -179,7 +192,7 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 			public void onClick(View v) {
 				filterButton.setVisibility(View.INVISIBLE);
 				eraseButton.setVisibility(View.INVISIBLE);
-				annoteButton.setVisibility(View.INVISIBLE);
+				annotateButton.setVisibility(View.INVISIBLE);
 				annotationText.setVisibility(View.INVISIBLE);
 				annotationText.setText("");
 				cameraFlipButton.setVisibility(View.VISIBLE);
@@ -216,8 +229,56 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 			}
 		});
 		
+		recordButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// Final needed for Timer
+				final View view = v;
+				if(!recordingAudio) {
+					recordedAudio = false;
+					recordingAudio = true;
+					startRecording(view);
+					// If after 10 seconds the recording is still ongoing, stop it
+					new Timer().schedule(new TimerTask() {          
+						@Override
+						public void run() {	
+							if(recordingAudio) {
+								
+								stopRecording(view);
+							}
+						}	
+					}, 10000);
+				} else {
+					stopRecording(view);
+				}
+				
+				
+			}
+
+			
+			
+		});
+		
+		playButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if(!playingAudio && recordedAudio) {
+					playingAudio = true;
+					startPlaying();
+				} else if(playingAudio) {
+					playingAudio = false;
+					stopPlaying();
+				}
+			}
+
+			
+			
+		});
+		
 		// Show annotation edittext, open keyboard with edittext as target
-		annoteButton.setOnClickListener(new OnClickListener() {
+		annotateButton.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
 				InputMethodManager manager = (InputMethodManager) v.getContext()
@@ -364,4 +425,49 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 		// Stub - as of yet unused, may not be needed unless a "filter canceled"
 		// message is desired
 	}
+	
+	private void startRecording(View v) {
+		Toast.makeText(v.getContext(), "Recording Started", 1000).show();
+		mRecorder = new MediaRecorder();
+        mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        mRecorder.setOutputFile("temp.gp3");
+        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+        
+        try {
+            mRecorder.prepare();
+        } catch (IOException e) {
+            Log.e("AudioRecording", "prepare() failed");
+        }
+        
+        mRecorder.start();
+		
+	}
+	
+	private void stopRecording(View v) {
+		recordingAudio = false;
+		Toast.makeText(v.getContext(), "Recording Stopped", 1000).show();
+		mRecorder.stop();
+        mRecorder.release();
+        mRecorder = null;
+		recordedAudio = true;
+		
+	}
+	
+	private void startPlaying() {
+		mPlayer = new MediaPlayer();
+        try {
+            mPlayer.setDataSource("temp.gp3");
+            mPlayer.prepare();
+            mPlayer.start();
+        } catch (IOException e) {
+            Log.e("AudioPlaying", "prepare() failed");
+        }
+	}
+	
+	private void stopPlaying() {
+		mPlayer.release();
+		mPlayer = null;
+	}
+	
 }
