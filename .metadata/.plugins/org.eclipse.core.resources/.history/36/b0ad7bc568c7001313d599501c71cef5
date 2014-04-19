@@ -505,11 +505,7 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 	public void sendMessage(MessageContainer theMessage) {
 		//For now just a general message about what's being sent
 		
-		String messageDetails  = "";
-			   if (bitmapPicture != null)	
-				   messageDetails += "Image: Bitmap captured\n";
-			   else
-				   messageDetails += "Image: Not captured\n"; //Uh-oh
+		String messageDetails  = "Image: \n";
 		       messageDetails += "Text: " + theMessage.messageText;
 		       messageDetails += "\n";
 		       if (theMessage.messageFilter == 0)		    	   
