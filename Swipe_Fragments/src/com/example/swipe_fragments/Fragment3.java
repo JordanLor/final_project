@@ -6,6 +6,7 @@ import java.util.TimerTask;
 
 import com.project.utils.FilterDialog;
 import com.project.utils.Filters;
+import com.project.utils.MessageContainer;
 
 import android.app.Activity;
 import android.content.Context;
@@ -65,10 +66,12 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 	private ImageView cameraFlipButton;
 	private ImageView recordButton;
 	private ImageView playButton;
+	private ImageView sendButton;
 	private EditText annotationText;
 	private FilterDialog filterDialog;
 	private Bitmap bitmapPicture;
 	private Bitmap filteredBitmap;
+	private int currentFilter;
 
 
 	@Override
@@ -104,6 +107,8 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 		
 		recordButton = (ImageView) view.findViewById(R.id.recordButton);
 		playButton = (ImageView) view.findViewById(R.id.playButton);
+		
+		sendButton = (ImageView) view.findViewById(R.id.sendButton);
 
 
 		// Needed to pass messages back to this fragment
@@ -128,6 +133,8 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 				
 				flashOffButton.setVisibility(View.INVISIBLE);
 				flashOnButton.setVisibility(View.INVISIBLE);
+				
+				sendButton.setVisibility(View.VISIBLE);
 				
 				
 				camera.takePicture(mShutterCallback, mPictureCallback_RAW, mPictureCallback_JPG);
@@ -197,6 +204,7 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 				annotationText.setText("");
 				cameraFlipButton.setVisibility(View.VISIBLE);
 				shutterButton.setVisibility(View.VISIBLE);
+				sendButton.setVisibility(View.INVISIBLE);
 				
 				if(flashOn)
 					flashOnButton.setVisibility(View.VISIBLE);
@@ -306,6 +314,16 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 			
 		});
 		
+		sendButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				createMessage();
+				MessageContainer currentMessage = new MessageContainer();
+			}
+		});
+		
 		
 
 
@@ -407,12 +425,14 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 	public void onFilterDialogPositiveClick(FilterDialog dialog) {
 		if(dialog.isChanged()) {
 			if(dialog.getSelectedFilter() == 0) {
+				currentFilter = 0;
 				photoView.setImageBitmap(bitmapPicture);
 				// Recycle unused filteredImage
 				if(filteredBitmap != null) {
 					filteredBitmap.recycle();
 				}
 			} else {
+				currentFilter = dialog.getSelectedFilter();
 				filteredBitmap = Filters.filterImage(bitmapPicture, dialog.getSelectedFilter());
 				photoView.setImageBitmap(filteredBitmap);
 			}
@@ -468,6 +488,36 @@ public class Fragment3 extends Fragment implements SurfaceHolder.Callback, Filte
 	private void stopPlaying() {
 		mPlayer.release();
 		mPlayer = null;
+	}
+	
+	public void createMessage() {
+		MessageContainer theMessage;
+		Bitmap messageImage = bitmapPicture;
+		String messageText = annotationText.getText().toString();
+		int messageFilter = currentFilter;
+		boolean messageAudio = false;
+		
+		theMessage = new MessageContainer(messageImage, messageText, messageFilter, messageAudio);
+		
+		sendMessage(theMessage);
+	}
+	
+	public void sendMessage(MessageContainer theMessage) {
+		//For now just a general message about what's being sent
+		
+		String messageDetails  = "Image: \n";
+		       messageDetails += "Text: " + theMessage.messageText;
+		       messageDetails += "\n";
+		       if (theMessage.messageFilter == 0)		    	   
+		    	   messageDetails += "Filter: None";
+		       else if (theMessage.messageFilter == 1)
+		    	   messageDetails += "Filter: Greyscale";
+		       else if (theMessage.messageFilter == 2)
+		    	   messageDetails += "Filter: Sepia";
+		       messageDetails += "\n";
+		       messageDetails += "Audio: " + theMessage.messageAudio;
+		       
+		Toast.makeText(getActivity().getApplicationContext(), messageDetails, Toast.LENGTH_LONG).show();
 	}
 	
 }

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?><RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="#FFFFFF">     
+    
+    <SurfaceView
+        android:id="@+id/surfaceview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+    
+    <ImageView
+        android:id="@+id/photoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY" />
+    
+    <ImageView
+        android:id="@+id/shutterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/round" />
+
+    <ImageView
+        android:id="@+id/filterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/shutterButton"
+        android:layout_marginRight="5dp"
+        android:src="@drawable/raster"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/eraseButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/filterButton"
+        android:src="@drawable/cancel"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/annoteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/shutterButton"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/speech_balloon"
+        android:visibility="invisible" />
+    
+    <EditText
+        android:id="@+id/annotationText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:ems="10"
+        android:visibility="invisible"
+        android:background="@color/translucentGray"> 
+    </EditText>
+
+    <ImageView
+        android:id="@+id/cameraFlipButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/camera_flip" />
+
+    <ImageView
+        android:id="@+id/flashOnButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/flash_on" />
+    
+    <ImageView
+        android:id="@+id/flashOffButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/flash_off" 
+        android:visibility="invisible"/>
+
+    <ImageView
+        android:id="@+id/recordButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/annoteButton"
+        android:layout_alignLeft="@+id/cameraFlipButton"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/record_icon" />
+
+    <ImageView
+        android:id="@+id/playButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/recordButton"
+        android:layout_alignLeft="@+id/recordButton"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/play" />
+
+    <ImageView
+        android:id="@+id/sendButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:visibility="false"
+        android:src="@drawable/checkmark" />
+
+</RelativeLayout>
